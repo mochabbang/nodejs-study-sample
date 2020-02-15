@@ -27,7 +27,7 @@ app.use('/users', usersRouter);
 
 /* Add */
 app.use(session({
-  secret:' secret key',
+  secret:'secret key',
   resave: false,
   saveUnintialized: true
 }));
