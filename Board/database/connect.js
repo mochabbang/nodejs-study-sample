@@ -1,4 +1,4 @@
-var Connect = require("tedious");
+var Connection = require("tedious").Connection;
 
 var config = {
     server: 'localhost',
@@ -15,13 +15,13 @@ var config = {
       rowCollectionOnDone: true,
       useColumnNames: false
     }
-}
+};
 
-var connection = new Connect(config);
+var connection = new Connection(config);
 
 connection.on('connect', function(err){
     if (err) {
-      console.log(arr);
+      console.log(err);
     }
     else {
       console.log('connected');

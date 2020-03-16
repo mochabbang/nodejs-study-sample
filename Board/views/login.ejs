@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript">
+      function login() {
+          var params = {};
+          params.userId = jQuery("#userId").val();
+          params.userPwd = jQuery("#userPwd").val();
+
+          jQuery.ajax({
+              url: "/users/login", 
+              type:"post",
+              data: params,
+              dataType: "json",
+              success: function(results){
+                  console.log(results.data.resultCode);
+                  console.log(results.data.resultMsg);
+              },
+              error: function(error) {
+                  console.log(error);
+              }
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <span>ID</span>
+      <input type="text" id="userId" />      
+    </div>
+    <div>
+      <span>Password</span>
+      <input type="password" id="userPwd" />
+    </div>
+    <div>
+      <input id="btnLogin" type="button" value="로그인" onclick="login();" />
+    </div>
+  </body>
+</html>
