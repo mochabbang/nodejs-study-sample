@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>로그인</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/js/jquery.min.js"></script>
     <script type="text/javascript">
@@ -11,16 +11,17 @@
           params.userPwd = jQuery("#userPwd").val();
 
           jQuery.ajax({
-              url: "/users/login", 
+              url: "/login", 
               type:"post",
               data: params,
               dataType: "json",
               success: function(results){
                   console.log(results.data.resultCode);
                   console.log(results.data.resultMsg);
+                  location.href = "/index";
               },
               error: function(error) {
-                  console.log(error);
+                  alert(error);
               }
           });
       }

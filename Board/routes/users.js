@@ -1,16 +1,13 @@
+/* router Setting */
 var express = require('express');
 var router = express.Router();
+var userviews = require('../views/userviews');
 
-var controller = require("../controllers/userControllers");
 
+/* users listing. */
+router.get('/', userviews.renderIndex);
+router.post('/login', userviews.renderLogin);
+router.get('/index', userviews.renderMain);
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'UserLogin' });
-});
-
-router.post('/login', function(req, res, next) {  
-  controller.getLoginUser(req, res);
-});
 
 module.exports = router;
