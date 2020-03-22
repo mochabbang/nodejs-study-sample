@@ -1,11 +1,12 @@
 var services = require("../services/userServices");
 
+/* User Login */
  function GetLoginUser(req,res) {
   
   try {
       console.log(req);
       
-      return services.getLoginUser(req.body, function (data) {
+      return services.getLoginUser(req, function (data) {
           res.status(200).json({ status: 200, data: data });
       });      
   } catch (e) {
