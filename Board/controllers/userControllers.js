@@ -34,7 +34,7 @@ function SetUserJoin(req,res) {
                   if(data.resultCode === "0") {
                      res.writeHead("200", {'Content-Type':'text/html; charset=utf-8' });
                      res.write("<script>alert('회원가입 되었습니다.'); location.href='/';</script>");
-                     res.redirect('/');
+                     res.end();
                   }
                   else {
                      res.write("<script>alert('" + data.resultMsg + "');</script>");
