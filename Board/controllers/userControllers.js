@@ -23,13 +23,9 @@ function SetUserJoin(req,res) {
      }
      else {
         if (!commonJs.IsNullOrUndefined(req.body)) {
-           userModel.userId = req.body.userId;
-           userModel.userName = req.body.userName;
-           userModel.userPwd = req.body.userPwd;
-           userModel.userEmail = req.body.userEmail;
-           userModel.userNickName = req.body.userNickName;
+           var user = userModel.User(req.body);
 
-           return services.setUserJoin(userModel, function(data){
+           return services.setUserJoin(user, function(data){
               if(!commonJs.IsNullOrUndefined(data)) {
                   if(data.resultCode === "0") {
                      res.writeHead("200", {'Content-Type':'text/html; charset=utf-8' });
