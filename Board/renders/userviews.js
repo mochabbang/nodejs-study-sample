@@ -21,5 +21,11 @@ module.exports = {
     }
 
     res.render('index',{ title: 'Hello Express', UserNickName: userNickName });
+  },
+  renderUserJoin: function(req, res)  {
+      res.render('users/join');
+  },
+  renderInsertUser: function(req, res) {
+    controller.setUserJoin(req, res);
   }
 };

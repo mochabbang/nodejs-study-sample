@@ -12,6 +12,13 @@ var Common = {};
     }
 }
 
+Common.IsNullOrUndefined = function(arg) {
+    if (arg === undefined || arg === null) 
+        return true;
+    else 
+        return false;
+}
+
 Common.IsNullOrEmpty = function(arg) {
     if (arg === undefined || arg === null) { throw "Property or Arguments was Never Null"; } else {
       if (typeof (arg) != "string") { throw "Property or Arguments was not 'String' Types"; }

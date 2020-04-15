@@ -4,11 +4,28 @@
     <title>로그인</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/view_common.js"></script>
     <script type="text/javascript">
-      function login() {
+      function userLogin() {
+
+          var userId = jQuery("#userId").val();
+          var userPwd = jQuery("#userPwd").val();
+
+          if(userId.IsNullOrEmpty()) 
+          {
+              alert('ID를 입력해주세요.');
+              return;
+          }
+
+          if(userPwd.IsNullOrEmpty()) 
+          {
+              alert('비밀번호를 입력해주세요.');
+              return;
+          }
+
           var params = {};
-          params.userId = jQuery("#userId").val();
-          params.userPwd = jQuery("#userPwd").val();
+          params.userId = userId;
+          params.userPwd = userPwd;
 
           jQuery.ajax({
               url: "/login", 
@@ -16,16 +33,35 @@
               data: params,
               dataType: "json",
               success: function(results){
-                  console.log(results.data.resultCode);
-                  console.log(results.data.resultMsg);
-                  location.href = "/index";
+                switch (results.data.resultCode) {
+                   case "0":
+                      location.href = "/index";
+                      break;
+                   case "100":
+                      alert(results.data.resultMsg);
+                      break;
+                   case "999":
+                      alert("입력하신 ID/PWD가 잘못되었습니다.");
+                      break;
+                   default:
+                      break;
+                }
               },
               error: function(error) {
-                  alert(error);
+                  console.log(error);
               }
           });
       }
+
+      function transferUserJoin() {
+          location.href = "/userJoin";
+      }
     </script>
+    <style>
+      div {
+        margin: 5px 0px;
+      }
+    </style>
   </head>
   <body>
     <div>
@@ -37,7 +73,8 @@
       <input type="password" id="userPwd" />
     </div>
     <div>
-      <input id="btnLogin" type="button" value="로그인" onclick="login();" />
+      <input id="btnLogin" type="button" value="로그인" onclick="userLogin();" />
+      <input id="btnJoin"" type="button" value="회원가입" onclick="transferUserJoin();" />
     </div>
   </body>
 </html>
