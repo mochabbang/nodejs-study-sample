@@ -23,14 +23,25 @@ function SetUserJoin(req,res) {
      }
      else {
         if (!commonJs.IsNullOrUndefined(req.body)) {
-           userModel.userID = req.body.userID;
+           userModel.userId = req.body.userId;
            userModel.userName = req.body.userName;
            userModel.userPwd = req.body.userPwd;
            userModel.userEmail = req.body.userEmail;
            userModel.userNickName = req.body.userNickName;
 
            return services.setUserJoin(userModel, function(data){
-              res.status(200).json({ status: 200, data: data });
+              if(!commonJs.IsNullOrUndefined(data)) {
+                  if(data.resultCode === "0") {
+                     res.writeHead("200", {'Content-Type':'text/html; charset=utf-8' });
+                     res.write("<script>alert('회원가입 되었습니다.'); location.href='/';</script>");
+                     res.redirect('/');
+                  }
+                  else {
+                     res.write("<script>alert('" + data.resultMsg + "');</script>");
+                  }
+              }
+              else 
+                  res.status(200).json({ status: 200, data: {resultCode: "999", resultMsg: "Insert Error"}});
            });
         }
         else {

@@ -11,13 +11,13 @@
           var userId = jQuery("#userId").val();
           var userPwd = jQuery("#userPwd").val();
 
-          if(userId.IsNullOrEmpty(userId)) 
+          if(userId.IsNullOrEmpty()) 
           {
               alert('ID를 입력해주세요.');
               return;
           }
 
-          if(userId.IsNullOrEmpty(userPwd)) 
+          if(userPwd.IsNullOrEmpty()) 
           {
               alert('비밀번호를 입력해주세요.');
               return;
